@@ -1,16 +1,18 @@
 def pda_recognizer(input_string):
-
+    """
+    Pushdown Automaton (PDA) to recognize strings from the grammar G: S -> aSb | ε.
+    """
     stack = []
     for char in input_string:
         if char == 'a':
-            stack.append('a')
+            stack.append('a')  # Push 'a' onto the stack
         elif char == 'b':
             if stack:
-                stack.pop()
+                stack.pop()  # Pop 'a' if available
             else:
-                return False
+                return False  # More 'b's than 'a's -> Invalid string
     
-    return len(stack) == 0
+    return len(stack) == 0  # Stack should be empty if valid
 
 if __name__ == "__main__":
     with open("generated_strings.txt", "r") as file:
