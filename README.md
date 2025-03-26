@@ -1,1 +1,85 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/xqfzPnPX)
+# Assingment 2
+
+## Authors
+- **Moises Arturo Vergara Garces**
+- **Hever Andre Alfonso Jimenez**
+
+## System and Tools Used
+- **Operating System:** Linux Mint 22.1
+- **Programming Language:** Python 3.12.3
+- **References:** Lectures 19, 20, 23, and 24 from *Automata and Computability* by Dexter C. Kozen
+
+## Project Overview
+This project implements three algorithms related to Context-Free Grammars (CFG) and Pushdown Automata (PDA). The grammar used is:
+
+\[ G: S \to aSb \ | \epsilon \]
+
+The implementation consists of three scripts:
+
+1. **ALGORITHM_1_LFCO_2025_HA_MV.py**: Generates strings.
+2. **ALGORITHM_2_LFCO_2025_HA_MV.py**: Implements a PDA that accepts or rejects strings.
+3. **ALGORITHM_3_LFCO_2025_HA_MV.py**: Constructs the leftmost derivation for accepted strings.
+
+## Instructions for Running the Implementations
+
+### 1. Running **Algorithm 1**
+This script generates a set of strings (both valid and invalid) and saves them to `generated_strings.txt`.
+
+#### Steps:
+```bash
+python3 ALGORITHM_1_LFCO_2025_HA_MV.py
+```
+
+#### Expected Output:
+```
+Generated strings:
+String: 'aabb'
+String: 'aaabbb'
+String: 'abab'
+String: 'aaaabbbb'
+String: 'aabbb'
+Generated strings have been saved to 'generated_strings.txt'
+```
+
+### 2. Running **Algorithm 2**
+This script reads the generated strings from `generated_strings.txt`, processes them using a PDA, and determines if they are accepted.
+
+#### Steps:
+```bash
+python3 ALGORITHM_2_LFCO_2025_HA_MV.py
+```
+
+#### Expected Output:
+```
+The string 'aabb' is accepted by the PDA
+The string 'aaabbb' is accepted by the PDA
+The string 'abab' is rejected by the PDA
+The string 'aaaabbbb' is accepted by the PDA
+The string 'aabbb' is rejected by the PDA
+```
+
+### 3. Running **Algorithm 3**
+This script processes the accepted strings from Algorithm 2 and generates their leftmost derivation.
+
+#### Steps:
+```bash
+python3 ALGORITHM_3_LFCO_2025_HA_MV.py
+```
+
+#### Expected Output:
+```
+Rule       Sentential forms in a leftmost configuration of x in G for 'aabb':
+           S
+S -> aSb   aSb
+S -> aSb   aaSbb
+S -> ε     aabb
+```
+
+## Notes
+- Ensure that **Algorithm 1** runs first to generate the necessary input file.
+- **Algorithm 2** must be executed before **Algorithm 3** to identify accepted strings.
+- If any script does not run, check that Python 3.12.3 is installed using:
+  ```bash
+  python3 --version
+  ```
+
