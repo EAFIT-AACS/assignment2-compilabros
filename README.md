@@ -12,7 +12,7 @@
 ## Project Overview
 This project implements three algorithms related to Context-Free Grammars (CFG) and Pushdown Automata (PDA). The grammar used is:
 
-\[ G: S \to aSb \ | \epsilon \]
+G: S -> aSb | ε
 
 The implementation consists of three scripts:
 
