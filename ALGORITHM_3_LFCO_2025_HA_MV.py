@@ -1,5 +1,3 @@
-import os
-
 def construct_leftmost_derivation(string):
     """
     Constructs and prints a leftmost derivation for a given accepted string,
@@ -29,12 +27,12 @@ def construct_leftmost_derivation(string):
 if __name__ == "__main__":
     accepted_strings = []
     
-    # Read results from Algorithm 2
-    with os.popen("python3 ALGORITHM_2_LFCO_2025_HA_MV.py") as pda_output:
+    # Read results from pda_results.txt
+    with open("pda_results.txt", "r") as pda_output:
         for line in pda_output:
             if "is accepted" in line:
                 accepted_strings.append(line.split("'")[1])
     
-    # Construct derivation trees for accepted strings
+    # Construct leftmost derivation for accepted strings
     for s in accepted_strings:
         construct_leftmost_derivation(s)
