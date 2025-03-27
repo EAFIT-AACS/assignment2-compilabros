@@ -18,6 +18,9 @@ if __name__ == "__main__":
     with open("generated_strings.txt", "r") as file:
         test_strings = [line.strip() for line in file]
     
-    for s in test_strings:
-        result = "accepted" if pda_recognizer(s) else "rejected"
-        print(f"The string '{s}' is {result} by the PDA")
+    with open("pda_results.txt", "w") as result_file:
+        for s in test_strings:
+            result = "accepted" if pda_recognizer(s) else "rejected"
+            output = f"The string '{s}' is {result} by the PDA\n"
+            print(output.strip())
+            result_file.write(output)
