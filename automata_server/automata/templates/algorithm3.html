@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Algoritmo 3 - Derivación más a la izquierda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .derivation {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            background-color: #f8f8f8;
+        }
+        .derivation h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        pre {
+            background-color: #eeeeee;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        a.button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            margin: 0.5rem;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resultado del Algoritmo 3 - Derivación más a la izquierda</h1>
+
+    {% if trees %}
+        {% for string, derivation in trees.items %}
+            <div class="derivation">
+                <h3>Cadena: {{ string }}</h3>
+                <pre>{{ derivation }}</pre>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No se encontraron derivaciones. Asegúrate de haber ejecutado el Algoritmo 2.</p>
+    {% endif %}
+
+    <div class="nav-buttons">
+        <a href="{% url 'index' %}" class="button">← Volver al inicio</a>
+    </div>
+</body>
+</html>
