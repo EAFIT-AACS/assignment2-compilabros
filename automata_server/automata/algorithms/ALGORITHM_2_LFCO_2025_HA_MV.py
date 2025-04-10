@@ -1,26 +1,44 @@
+import os
+
 def pda_recognizer(input_string):
-    """
-    Pushdown Automaton (PDA) to recognize strings from the grammar G: S -> aSb | ε.
-    """
     stack = []
-    for char in input_string:
+    history = []
+    for i, char in enumerate(input_string):
         if char == 'a':
-            stack.append('a')  # Push 'a' onto the stack
+            stack.append('a')
+            history.append(f"Step {i+1}: Read 'a', push → {stack}")
         elif char == 'b':
             if stack:
-                stack.pop()  # Pop 'a' if available
+                stack.pop()
+                history.append(f"Step {i+1}: Read 'b', pop → {stack}")
             else:
-                return False  # More 'b's than 'a's -> Invalid string
-    
-    return len(stack) == 0  # Stack should be empty if valid
+                history.append(f"Step {i+1}: Read 'b', but stack empty → rejected")
+                return False, history
 
-if __name__ == "__main__":
-    with open("generated_strings.txt", "r") as file:
+    if len(stack) == 0:
+        history.append("Final: Stack empty → accepted")
+        return True, history
+    else:
+        history.append("Final: Stack not empty → rejected")
+        return False, history
+
+def run():
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    input_path = os.path.join(BASE_DIR, "generated_strings.txt")
+    output_path = os.path.join(BASE_DIR, "pda_results.txt")
+
+    if not os.path.exists(input_path):
+        return [{'string': 'Archivo no encontrado', 'accepted': False, 'history': ['El archivo no existe. Ejecutá el Algoritmo 1 primero.']}]
+
+    with open(input_path, "r") as file:
         test_strings = [line.strip() for line in file]
-    
-    with open("pda_results.txt", "w") as result_file:
+
+    results = []
+
+    with open(output_path, "w") as result_file:
         for s in test_strings:
-            result = "accepted" if pda_recognizer(s) else "rejected"
-            output = f"The string '{s}' is {result} by the PDA\n"
-            print(output.strip())
-            result_file.write(output)
+            accepted, history = pda_recognizer(s)
+            result_file.write(f"The string '{s}' is {'accepted' if accepted else 'rejected'} by the PDA\n")
+            results.append({'string': s, 'accepted': accepted, 'history': history})
+
+    return results
